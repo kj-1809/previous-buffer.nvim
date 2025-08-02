@@ -1,0 +1,12 @@
+Buffer added /home/kj1809/Developer/custom_plugin.nvim/=
+BufEnterend
+Buffer left /home/kj1809/Developer/custBuffer added 
+/=
+Buffer added 
+BufEnterend
+Buffer left 
+Buffer added /home/kj1809/Developer/custom_plugin.nvim/=
+BufEnterend
+Buffer left /home/kj1809/Developer/custom_plugin.nvim/=
+Buffer added /home/kj1809/Developer/custom_plugin.nvim/plugin/load.lua
+BufEnterend
