@@ -1,2 +1,2 @@
-require "custom_plugin"
+require "previous-buffer.core"
 

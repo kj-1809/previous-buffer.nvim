@@ -1,4 +1,4 @@
-local Stack = require "stack"
+local Stack = require "previous-buffer.stack"
 
 local buffer_stack = Stack.create()
 local buffer_map = {}
