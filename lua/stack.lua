@@ -15,6 +15,9 @@ function Stack:push(ele)
 end
 
 function Stack:pop()
+	if self.size == 0 then
+		return -1
+	end
 	local val = table.remove(self.arr)
 	self.size = self.size - 1
 	return val
