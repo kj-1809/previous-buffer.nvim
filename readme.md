@@ -20,7 +20,7 @@ Use [lazy.nvim](https://github.com/folke/lazy.nvim) to install the plugin:
 return {
   "kj-1809/previous-buffer.nvim",
   config = function()
-    vim.keymap.set("n", "<leader>.", ":PreviousBuffer<CR>", { silent = true })
+    vim.keymap.set("n", "<leader>,", ":PreviousBuffer<CR>", { silent = true })
   end,
 }
 ```
