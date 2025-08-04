@@ -4,7 +4,6 @@ A simple Neovim plugin to quickly jump back to the previously opened buffer.
 
 Neovim does not have built-in support for jumping back to the last buffer you were editing. This plugin implements a buffer history stack with cache invalidation to enable easy backward navigation through your buffer history.
 
----
 
 ## Features
 
@@ -12,7 +11,6 @@ Neovim does not have built-in support for jumping back to the last buffer you we
 - Invalidates old entries when buffers are reopened
 - Allows quick jumping to the previous buffer with a command or keybind
 
----
 
 ## Installation
 
