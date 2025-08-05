@@ -3,22 +3,26 @@ local Stack = require "previous-buffer.stack"
 local buffer_stack = Stack.create()
 local buffer_map = {}
 
+
+local get_buf_expiry_and_update_cache = function(buffer_name)
+	local buffer_expiry = nil
+	if buffer_map[buffer_name] ~= nil then
+		buffer_expiry = buffer_map[buffer_name] + 1
+		buffer_map[buffer_name] = buffer_expiry
+	else
+		buffer_expiry = 1
+		buffer_map[buffer_name] = buffer_expiry
+	end
+	return buffer_expiry
+end
+
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	callback = function(args)
 		local buffer_name = vim.api.nvim_buf_get_name(args.buf)
 
 		if #buffer_name ~= 0 and (buffer_stack:is_empty() or buffer_stack:top() ~= buffer_name) then
-			local buffer_expiry = nil
-			if buffer_map[buffer_name] ~= nil then
-				buffer_expiry = buffer_map[buffer_name] + 1
-				buffer_map[buffer_name] = buffer_expiry
-			else
-				buffer_expiry = 1
-				buffer_map[buffer_name] = buffer_expiry
-			end
-
+			local buffer_expiry = get_buf_expiry_and_update_cache(buffer_name)
 			buffer_stack:push({ buffer_name, buffer_expiry })
-
 		end
 	end
 })
@@ -41,6 +45,16 @@ local get_true_previous_buffer = function()
 		end
 	end
 
+
+	if buffer_stack:is_empty() then
+		local temp_buf_name = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf());
+
+		if #temp_buf_name ~= 0 then
+			local temp_buf_expiry = get_buf_expiry_and_update_cache(temp_buf_name)
+			buffer_stack:push({ temp_buf_name, temp_buf_expiry })
+		end
+	end
+
 	return prev_buffer
 end
 
@@ -57,4 +71,3 @@ end
 
 
 vim.api.nvim_create_user_command("PreviousBuffer", move_to_previous_buffer, {})
-
